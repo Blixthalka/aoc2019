@@ -25,7 +25,9 @@ func getInput() []int {
 	return intInput
 }
 
-func calc(data []int) int {
+func calc(data []int, noun int, verb int) int {
+	data[1] = noun
+	data[2] = verb
 	i := 0
 Loop:
 	for true {
@@ -51,7 +53,7 @@ Loop:
 
 func part1() {
 	data := getInput()
-	fmt.Println(calc(data))
+	fmt.Println(calc(data, 12, 2))
 }
 
 func part2() {
@@ -62,10 +64,8 @@ All:
 		for verb := 1; verb < 100; verb++ {
 			data := make([]int, len(dataOriginal))
 			copy(data, dataOriginal)
-			data[1] = noun
-			data[2] = verb
 
-			result := calc(data)
+			result := calc(data, noun, verb)
 
 			if result == 19690720 {
 				fmt.Println(100*noun + verb)
